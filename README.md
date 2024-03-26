@@ -39,13 +39,13 @@ sided config chain-id side-testnet-3
 ```
 ## 4) Download Genesis
 ```
-curl -s https://raw.githubusercontent.com/sideprotocol/testnet/main/side-testnet-3/pregenesis.json > ~/.side/config/genesis.json
+wget https://github.com/sideprotocol/testnet/raw/main/side-testnet-3/genesis.json -O ~/.side/config/genesis.json
 ```
 ## 5) проверка генезиса 
 ```
-sha256sum $HOME/.side/config/genesis.json
+shasum -a 256 ~/.side/config/genesis.json
 ```
- вывод типа c6c90c6070604fbd555675842ea33e168a4546cbc940ce2a148afcd4e4ced8a7
+ вывод типа 2e908a79fee2c70c93b41eba3842106f8370b1cf  genesis.json
 
 ## 6) Set up the minimum gas price and Peers/Seeds/Filter peers/MaxPeers
 ```
@@ -54,7 +54,7 @@ external_address=$(wget -qO- eth0.me)
 sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.side/config/config.toml
 peers=""
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.side/config/config.toml
-seeds="693bdfec73a81abddf6f758aa49321de48456a96@13.231.67.192:26656"
+seeds="00170c0c23c3e97c740680a7f881511faf68289a@202.182.119.24:26656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.side/config/config.toml
 sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 50/g' $HOME/.side/config/config.toml
 sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 50/g' $HOME/.side/config/config.toml
